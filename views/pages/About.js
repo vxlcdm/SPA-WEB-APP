@@ -242,14 +242,14 @@ E-mail: hello@Lifan.com
     <div class="video-pipup-child-class">
         <div class="video-popup-child-child">
             
-            <a
+            <p
             class="anchor-within-vd 
-            popup-youtube
+
+            
             "
-            href="https://www.youtube.com/embed/R4vjJrGeh1c
-            ">
-                <center> <img src="http://www.clipartbest.com/cliparts/9Tp/enR/9TpenRLTE.svg" class="glowing-button" height="80"> </center>
-               </a>
+            >
+                <center class="glowing-button"> <img src="http://www.clipartbest.com/cliparts/9Tp/enR/9TpenRLTE.svg" class="popup-youtube"  height="80"> </center>
+               </p>
         </div>
     </div>
 </div>
@@ -928,42 +928,49 @@ E-mail: hello@Lifan.com
 `;
     },
     after_render: async()=>{
+        
+        
+        const imgage = document.querySelector(".popup-youtube");
+        var videoSrc = "https://www.youtube.com/embed/9bZkp7q19f0?autoplay=1&rel=0";
 
 
-        document.addEventListener("DOMContentLoaded", function () {
-            document.querySelectorAll(".popup-youtube").forEach(function (videoLink) {
-              videoLink.addEventListener("click", function (e) {
-                e.preventDefault();
-          
-                var videoSrc = this.href + "?autoplay=1&rel=0";  
-                var modal = document.createElement("div");
+        if(imgage){
+            imgage.addEventListener("click", function(){
+                console.log("clicked img");
+                  var modal = document.createElement("div");
+                console.log(modal);
+                
                 modal.classList.add("video-modal");
                 modal.innerHTML = `
                   <div class="video-modal-content">
                     <button class="video-close">&times;</button>
                     <div class="video-wrapper">
-                      <iframe src="${videoSrc}" frameborder="0" ></iframe>
+                      <iframe src="${videoSrc}" frameborder="1" ></iframe>
                     </div>
                   </div>
                 `;
           
                 document.body.appendChild(modal);
-          
-             
-                modal.querySelector(".video-close").addEventListener("click", function () {
+
+                   modal.querySelector(".video-close").addEventListener("click", function () {
                   modal.remove();
                 });
-          
-                modal.addEventListener("click", function (e) {
+
+
+                 modal.addEventListener("click", function (e) {
                   if (e.target === modal) {
                     modal.remove();
                   }
-                });
-              });
+
+                });     
+                
             });
-          });
-          
-          
+
+                };
+
+
+
+
         
           
           let carouseldoom = document.querySelector(".carouseldoom");
